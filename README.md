@@ -1,5 +1,37 @@
 # README
 
+## Lessons Learnt
+
+1. block in load_missing_constant': uninitialized constant Rack::Cors (NameError)
+
+### Solution
+
+You just need to un-comment the Rack CORS gem in your Gemfile (gemfile.rb)
+
+**# gemfile.rb**
+
+    gem 'rack-cors'
+
+And then run the code below to install the gem
+
+    bundle install
+
+And also ensure that your cors initializer (cors.rb) is set this way
+**# config/initializers/cors.rb**
+```
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*'
+
+    resource '*',
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  end
+end
+```
+Setting origins to '*' should be alright for development, but keep in mind that if you deploy to production you’ll want to change this value to match your front-end’s URI for security reasons.
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
