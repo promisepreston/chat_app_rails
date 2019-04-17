@@ -54,3 +54,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 end
 ```
 Setting origins to '*' should be alright for development, but keep in mind that if you deploy to production you’ll want to change this value to match your front-end’s URI for security reasons.
+
+### Medium Post
+
+https://medium.com/@dakota.lillie/using-action-cable-with-react-c37df065f296
